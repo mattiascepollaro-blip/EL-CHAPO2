@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clone JUCE 8
-        run: git clone --depth 1 --branch 8.0.6 https://github.com C:/JUCE
+      - name: Clone JUCE
+        run: git clone --depth 1 https://github.com C:/JUCE
 
       - name: Configure CMake
         run: cmake -B build -G "Visual Studio 17 2022" -A x64 -DJUCE_DIR=C:/JUCE -DCMAKE_PREFIX_PATH=C:/JUCE

@@ -13,8 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clone JUCE
-        run: git clone --depth 1 https://github.com C:/JUCE
+      - name: Download JUCE 8
+        run: |
+          Invoke-WebRequest -Uri "https://github.com" -OutFile "juce.zip"
+          Expand-Archive -Path "juce.zip" -DestinationPath "C:/"
+          Rename-Item -Path "C:/JUCE-8.0.4" -NewName "JUCE"
 
       - name: Configure CMake
         run: cmake -B build -G "Visual Studio 17 2022" -A x64 -DJUCE_DIR=C:/JUCE -DCMAKE_PREFIX_PATH=C:/JUCE
